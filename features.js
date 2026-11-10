@@ -37,6 +37,39 @@ let selectedDays=7, activeAudio=null, audioCtx=null, masterGain=null, soundNodes
 const readJSON=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}};
 let moodLog=readJSON("haal-moods",{});
 let doneLog=readJSON("haal-journey",{});
+
+function translateFeatureStatic(){
+ const en=lang==="en";
+ const v=en?{
+  navMood:"Mood check-in",navJourney:"Growth path",navSounds:"Sounds",navBooks:"Books",navPodcasts:"Podcasts",navAssistant:"AI guide",
+  journeyEyebrow:"Small steps, meaningful change",journeyTitle:"Your personal growth path",journeyIntro:"One small step each day. Mark each day yourself. This is not a substitute for professional care.",days7:"7-day path",days21:"21-day path",
+  soundsEyebrow:"A room for sound and stillness",soundsTitle:"Rain, nature and calming music",soundsIntro:"These sounds are generated in your browser; no copyrighted music or audio file is bundled. Choose a soundscape to begin.",soundVolumeLabel:"Volume",
+  soundLicense:'For recorded sounds and licensed music, explore <a href="https://mixkit.co/free-sound-effects/rain/" target="_blank" rel="noopener">Mixkit rain sounds</a> and the <a href="https://pixabay.com/service/license-summary/" target="_blank" rel="noopener">Pixabay license</a>. Check each file license before hosting it.',
+  booksEyebrow:"Learning library",booksTitle:"Short psychology book summaries",booksIntro:"These are independent, concise summaries—not replacements for the full books.",
+  podsEyebrow:"Listen to the experts",podsTitle:"Psychology podcasts",podsIntro:"Selected episodes from official sources, with short descriptions and links to listen or read transcripts.",
+  assistantEyebrow:"A supportive conversation",assistantTitle:"Haal Khoob guide",assistantBadge:window.HAAL_KHOOB_AI_ENDPOINT?"AI assistant connected":"Local demo guide",
+  assistantIntro:window.HAAL_KHOOB_AI_ENDPOINT?"Ask about emotions, habits and everyday coping. The connected model offers general support, not diagnosis or therapy.":"Ask about emotions, habits and everyday coping. This local demo uses prepared guidance and is not connected to an online language model yet.",
+  assistantWelcome:"Hello. I’m your Haal Khoob guide. What would you like to think through today?",
+  assistantPlaceholder:"For example, my mind feels busy lately…",
+  aiModeNote:window.HAAL_KHOOB_AI_ENDPOINT?"Messages are sent to the configured AI service to generate a reply. Avoid sharing identifying or highly sensitive details. This is not medical or crisis care.":"Messages are processed locally in this page and are not saved or sent. To connect a real AI model, deploy the secure Worker described in AI_SETUP.md."
+ }:{
+  navMood:"حال امروز",navJourney:"مسیر رشد",navSounds:"صداها",navBooks:"کتاب‌ها",navPodcasts:"پادکست",navAssistant:"یار هوشمند",
+  journeyEyebrow:"قدم‌های کوچک، تغییرهای ماندگار",journeyTitle:"مسیر رشد شخصی",journeyIntro:"هر روز یک قدم کوچک؛ انجام هر روز را خودت علامت بزن. این برنامه جایگزین مراقبت تخصصی نیست.",days7:"مسیر ۷ روزه",days21:"مسیر ۲۱ روزه",
+  soundsEyebrow:"اتاق صدا و سکوت",soundsTitle:"باران، طبیعت و موسیقی آرام",soundsIntro:"این صداها در خود مرورگر تولید می‌شوند؛ فایل موسیقی یا صدای دارای حق نشر همراه برنامه نیست. برای شروع یک فضا را انتخاب کن.",soundVolumeLabel:"بلندی صدا",
+  soundLicense:'برای صداهای ضبط‌شده و موسیقی‌های دارای مجوز، <a href="https://mixkit.co/free-sound-effects/rain/" target="_blank" rel="noopener">صداهای باران Mixkit</a> و <a href="https://pixabay.com/service/license-summary/" target="_blank" rel="noopener">مجوز Pixabay</a> را ببین. مجوز هر فایل را پیش از میزبانی جداگانه بررسی کن.',
+  booksEyebrow:"کتابخانه یادگیری",booksTitle:"خلاصه‌های کوتاه کتاب‌های روان‌شناسی",booksIntro:"این‌ها خلاصه‌های مستقل و کوتاه‌اند؛ جایگزین کتاب کامل نیستند.",
+  podsEyebrow:"شنیدن از زبان متخصصان",podsTitle:"پادکست‌های روان‌شناسی",podsIntro:"قسمت‌های منتخب از منابع رسمی، همراه توضیح کوتاه و لینک شنیدن یا خواندن متن کامل.",
+  assistantEyebrow:"همراه گفت‌وگو",assistantTitle:"یار حال خوب",assistantBadge:window.HAAL_KHOOB_AI_ENDPOINT?"دستیار هوشمند متصل است":"راهنمای محلی آزمایشی",
+  assistantIntro:window.HAAL_KHOOB_AI_ENDPOINT?"درباره احساسات، عادت‌ها و مراقبت روزمره سؤال کن. مدل متصل پشتیبانی عمومی ارائه می‌دهد، نه تشخیص یا درمان.":"درباره احساسات، عادت‌ها و تمرین‌های روزمره سؤال کن. این نسخه راهنمای محلی ازپیش‌تعریف‌شده دارد و هنوز به مدل زبانی آنلاین متصل نیست.",
+  assistantWelcome:"سلام، من یار تعاملی حال خوبم. دوست داری امروز درباره چه چیزی فکر کنیم؟",
+  assistantPlaceholder:"مثلاً این روزها ذهنم خیلی شلوغ است…",
+  aiModeNote:window.HAAL_KHOOB_AI_ENDPOINT?"پیام برای تولید پاسخ به سرویس هوش مصنوعی تنظیم‌شده ارسال می‌شود. اطلاعات هویتی یا بسیار حساس نفرست. این سرویس جایگزین مراقبت پزشکی یا کمک در بحران نیست.":"پیام‌ها فقط در همین صفحه پردازش می‌شوند و ذخیره یا ارسال نمی‌شوند. برای اتصال مدل واقعی، راهنمای AI_SETUP.md را ببین."
+ };
+ Object.entries(v).forEach(([id,value])=>{const el=document.getElementById(id);if(el){if(id==="soundLicense")el.innerHTML=value;else el.textContent=value}});
+ const input=document.getElementById("assistantInput");if(input)input.placeholder=v.assistantPlaceholder;
+ const themeBtn=document.getElementById("themeToggle");if(themeBtn)themeBtn.textContent=en?"🎨 Theme":"🎨 پوسته";
+}
+
 function renderMoods(){
  const c=copy[lang]||copy.fa;
  $("#moodTitle").textContent=c.moodTitle;$("#moodIntro").textContent=c.moodIntro;
@@ -55,7 +88,7 @@ function setMood(id){
 function renderJourney(){
  const c=copy[lang],arr=selectedDays===7?c.journey7:c.journey21,key=String(selectedDays),done=doneLog[key]||[];
  document.querySelectorAll("[data-days]").forEach(b=>b.classList.toggle("active",Number(b.dataset.days)===selectedDays));
- const pct=Math.round(done.length/arr.length*100);$("#journeyProgress span").style.width=pct+"%";$("#journeyPercent").textContent=c.progress+pct+"% · "+done.length+"/"+arr.length;
+ const pct=Math.round(done.length/arr.length*100);$("#journeyProgress span").style.width=pct+"%";$("#journeyPercent").textContent=c.progress+pct+"% · "+done.length+"/"+arr.length;if($("#journeyIntro"))$("#journeyIntro").textContent=c.journeyIntro;
  $("#journeyDays").innerHTML=arr.map((d,i)=>'<button class="journey-day '+(done.includes(i)?"done":"")+'" data-day="'+i+'"><b>'+c.day+(i+1)+' · '+d[0]+'</b><small>'+d[1]+'</small><small>'+(done.includes(i)?c.done:c.todo)+'</small></button>').join("");
 }
 function toggleJourneyDay(i){const key=String(selectedDays),arr=doneLog[key]||[];doneLog[key]=arr.includes(i)?arr.filter(x=>x!==i):[...arr,i];localStorage.setItem("haal-journey",JSON.stringify(doneLog));renderJourney()}
@@ -137,17 +170,31 @@ function localGuide(input){
  return fa?"می‌توانیم با یک سؤال کوچک شروع کنیم: دوست داری الان بیشتر شنیده شوی، مسئله را روشن‌تر ببینی، یا یک قدم عملی پیدا کنی؟ پاسخ‌های این نسخه محلی و آموزشی‌اند و جایگزین گفت‌وگو با متخصص نیستند.":"We can start with one small question: would you rather feel heard, understand the situation more clearly, or find one practical next step? This local guide is educational and not a substitute for professional care.";
 }
 function initAssistant(){
- $("#assistantForm").addEventListener("submit",e=>{e.preventDefault();const v=$("#assistantInput").value.trim();if(!v)return;addMessage(v,true);$("#assistantInput").value="";setTimeout(()=>addMessage(localGuide(v)),120)});
+ const endpoint=(window.HAAL_KHOOB_AI_ENDPOINT||"").trim();
+ $("#assistantForm").addEventListener("submit",async e=>{
+  e.preventDefault();const v=$("#assistantInput").value.trim();if(!v)return;
+  addMessage(v,true);$("#assistantInput").value="";
+  if(!endpoint){addMessage(localGuide(v));return}
+  addMessage(lang==="fa"?"در حال آماده‌کردن پاسخ…":"Preparing a response…");
+  const pending=$("#assistantMessages").lastElementChild;
+  try{
+   const res=await fetch(endpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:v,language:lang})});
+   const data=await res.json();if(!res.ok||!data.reply)throw new Error("AI request failed");
+   pending.textContent=data.reply;
+  }catch(err){
+   pending.textContent=(lang==="fa"?"اتصال به دستیار هوشمند برقرار نشد. پاسخ راهنمای محلی: ":"Could not reach the AI assistant. Local guide: ")+localGuide(v);
+  }
+ });
 }
 function init(){
- renderMoods();renderJourney();renderSounds();renderBooksAndPods();themeControl();initAssistant();
+ translateFeatureStatic();renderMoods();renderJourney();renderSounds();renderBooksAndPods();themeControl();initAssistant();
  $("#moodChoices").addEventListener("click",e=>{const b=e.target.closest("[data-mood]");if(b)setMood(b.dataset.mood)});
  $("#journeyDays").addEventListener("click",e=>{const b=e.target.closest("[data-day]");if(b)toggleJourneyDay(Number(b.dataset.day))});
  document.querySelectorAll("[data-days]").forEach(b=>b.addEventListener("click",()=>{selectedDays=Number(b.dataset.days);renderJourney()}));
  $("#soundScenes").addEventListener("click",e=>{const b=e.target.closest("[data-sound]");if(b)playSound(b.dataset.sound)});
  $("#stopSound").addEventListener("click",stopSound);
  $("#soundVolume").addEventListener("input",e=>{if(masterGain)masterGain.gain.value=Number(e.target.value)/100*0.22});
- $("#langToggle").addEventListener("click",()=>setTimeout(()=>{renderMoods();renderJourney();renderSounds();renderBooksAndPods()},0));
+ $("#langToggle").addEventListener("click",()=>setTimeout(()=>{translateFeatureStatic();renderMoods();renderJourney();renderSounds();renderBooksAndPods()},0));
  document.addEventListener("visibilitychange",()=>{if(document.hidden&&audioCtx&&audioCtx.state==="running")audioCtx.suspend()});
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
