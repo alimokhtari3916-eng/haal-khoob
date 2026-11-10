@@ -2,19 +2,60 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#66734d"><meta name="description" content="حال خوب؛ همراهی آرام برای ذهن و زندگی روزمره">
-<link rel="manifest" href="./manifest.webmanifest"><link rel="stylesheet" href="./style.css">
-<title>حال خوب | هر روز، یک قدم به آرامش</title>
+<meta name="theme-color" content="#68734f"><meta name="description" content="حال خوب؛ همراه آرامش، خودشناسی، روان‌شناسی و الهام روزانه">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./assets/haal-khoob-icon.webp" type="image/webp"><link rel="apple-touch-icon" href="./assets/haal-khoob-icon.webp"><link rel="stylesheet" href="./style.css">
+<title>حال خوب | حال بهتر، قدم‌به‌قدم</title>
 </head>
 <body>
-<header class="top"><div class="brand"><span class="mark">☼</span><div><b>حال خوب</b><small>هر روز، یک قدم به آرامش</small></div></div><button id="install" class="install" hidden>نصب برنامه</button></header>
+<header class="topbar">
+ <a class="brand" href="#" aria-label="حال خوب"><img src="./assets/haal-khoob-icon.webp" alt="آیکن اصلی حال خوب"><span><b>حال خوب</b><small data-i18n="tagline">همراه آرام تو برای زندگی روزمره</small></span></a>
+ <div class="top-actions"><span class="live-pill"><i></i><span data-i18n="daily">الهام روزانه</span></span><button id="langToggle" class="lang-btn" type="button">EN</button><button id="installBtn" class="install-btn" type="button" hidden data-i18n="install">نصب اپلیکیشن</button></div>
+</header>
 <main>
-<section class="hero"><span class="eyebrow">فضایی برای مکث و نفس کشیدن</span><h1>با خودت مهربان‌تر باش.</h1><p>قرار نیست هر روز عالی باشی؛ کافی است امروز، یک قدم کوچک به سمت حال بهتر برداری.</p><button id="todayBtn">یک پیام برای امروز</button></section>
-<section class="section"><div class="heading"><div><span class="eyebrow">الهام روزانه</span><h2>چند لحظه برای خودت</h2></div><button class="plain" id="newQuote">جمله تازه ↻</button></div><article class="quote"><span>❝</span><p id="quote">آرامش از جایی شروع می‌شود که به خودت اجازه می‌دهی همه‌چیز را یک‌باره حل نکنی.</p><small id="author">پیام حال خوب</small></article></section>
-<section class="section"><span class="eyebrow">کتابخانه حال خوب</span><h2>امروز به چه چیزی نیاز داری؟</h2><div class="tiles"><button class="tile" data-kind="آرامش"><i>🌿</i><b>آرامش ذهن</b><small>مکث، تنفس و حضور</small></button><button class="tile" data-kind="انگیزه"><i>☀️</i><b>انگیزه</b><small>قدم‌های کوچک و امید</small></button><button class="tile" data-kind="رشد"><i>🪴</i><b>رشد فردی</b><small>یادگیری و خودشناسی</small></button><button class="tile" data-kind="روابط"><i>🤍</i><b>روابط سالم</b><small>مرزها و مهربانی</small></button></div><div id="tip" class="tip">یک دسته را انتخاب کن تا یک تمرین کوتاه ببینی.</div></section>
-<section class="section"><span class="eyebrow">تماشای آگاهانه</span><h2>فیلم‌هایی برای فکر کردن</h2><div class="movie"><b>Inside Out (2015)</b><p>انیمیشنی درباره شناخت احساسات و پذیرفتن همه آن‌ها؛ مناسب گفت‌وگو درباره سواد هیجانی.</p><a href="https://www.imdb.com/title/tt2096673/" target="_blank" rel="noopener">معرفی و اطلاعات فیلم ↗</a></div><div class="movie"><b>The Pursuit of Happyness (2006)</b><p>روایتی درباره پشتکار، امید و عبور از دشواری‌ها.</p><a href="https://www.imdb.com/title/tt0454921/" target="_blank" rel="noopener">معرفی و اطلاعات فیلم ↗</a></div><p class="note">پیشنهادها برای الهام و گفت‌وگو هستند و جایگزین مشاوره تخصصی نیستند.</p></section>
-<section class="section"><span class="eyebrow">تمرین یک دقیقه‌ای</span><h2>همین حالا نفس بکش</h2><p>۴ شماره دم بگیر، ۲ شماره مکث کن و ۶ شماره آرام بازدم کن. سه بار تکرار کن؛ اگر ناراحت شدی به تنفس طبیعی برگرد.</p><button id="breath">شروع تمرین</button><div id="breathOut" class="tip" aria-live="polite">آماده‌ای؟</div></section>
+ <section class="hero">
+  <div class="hero-copy"><span class="eyebrow" data-i18n="heroEyebrow">یک مکث کوچک برای خودت</span><h1 data-i18n="heroTitle">حال خوب، از همین لحظه شروع می‌شود.</h1><p data-i18n="heroText">اینجا قرار نیست همیشه قوی باشی؛ می‌توانی یاد بگیری با خودت مهربان‌تر باشی، احساساتت را بشناسی و قدم بعدی را آرام‌تر برداری.</p><a class="hero-link" href="#daily" data-i18n="heroCta">امروز را با یک پیام شروع کن ←</a></div>
+  <div class="hero-orbit"><div class="orbit-glow">☼</div><span>نفس بکش</span><small>تو همین‌جایی؛ همین کافی است.</small></div>
+ </section>
+ <section id="daily" class="daily-section">
+  <div class="section-head"><div><span class="eyebrow" data-i18n="today">برای امروز</span><h2 data-i18n="dailyTitle">یک جمله، یک شروع تازه</h2></div><span class="date-chip" id="todayDate"></span></div>
+  <article class="daily-card"><div class="quote-mark">“</div><p id="dailyText" class="daily-text"></p><div class="daily-meta"><span id="dailyAuthor"></span><span id="dailyKind" class="source-tag"></span></div><div class="card-actions"><button id="nextDaily" class="primary-btn" data-i18n="another">یک پیام دیگر ↻</button><button id="saveDaily" class="icon-btn" aria-label="ذخیره" title="ذخیره">♡</button><button id="shareDaily" class="icon-btn" aria-label="اشتراک‌گذاری" title="اشتراک‌گذاری">↗</button></div><a id="dailySource" class="source-link" target="_blank" rel="noopener"></a></article>
+ </section>
+ <section class="section-block" id="library">
+  <div class="section-head"><div><span class="eyebrow" data-i18n="libraryEyebrow">کتابخانه الهام</span><h2 data-i18n="libraryTitle">جمله‌هایی برای روزهای مختلف</h2></div><span class="count-label" id="quoteCount"></span></div>
+  <div class="toolbar"><label class="search-wrap"><span>⌕</span><input id="searchQuotes" type="search" data-placeholder-fa="جست‌وجو در جمله‌ها، نام‌ها و موضوع‌ها…" data-placeholder-en="Search quotes, people and topics…" placeholder="جست‌وجو در جمله‌ها، نام‌ها و موضوع‌ها…"></label><div id="filters" class="filters"><button class="filter active" data-filter="all" data-fa="همه" data-en="All">همه</button><button class="filter" data-filter="calm" data-fa="آرامش" data-en="Calm">آرامش</button><button class="filter" data-filter="growth" data-fa="رشد فردی" data-en="Growth">رشد فردی</button><button class="filter" data-filter="hope" data-fa="امید و انگیزه" data-en="Hope">امید و انگیزه</button><button class="filter" data-filter="relationships" data-fa="روابط" data-en="Relationships">روابط</button></div></div>
+  <div id="quotesGrid" class="quotes-grid"></div>
+ </section>
+ <section class="section-block" id="films">
+  <div class="section-head"><div><span class="eyebrow" data-i18n="filmEyebrow">تماشای آگاهانه</span><h2 data-i18n="filmTitle">فیلم‌هایی برای فکر کردن و احساس کردن</h2></div></div>
+  <p class="section-intro" data-i18n="filmIntro">از سینمای ایران و جهان؛ پیشنهادهایی درباره همدلی، تاب‌آوری، خانواده، امید و شناخت احساسات.</p>
+  <div id="moviesGrid" class="movies-grid"></div>
+ </section>
+ <section class="section-block" id="research">
+  <div class="section-head"><div><span class="eyebrow" data-i18n="researchEyebrow">دانش در حال تازه‌شدن</span><h2 data-i18n="researchTitle">تازه‌های پژوهش روان‌شناسی</h2></div><button id="refreshResearch" class="subtle-btn" data-i18n="refresh">به‌روزرسانی ↻</button></div>
+  <p class="section-intro" data-i18n="researchIntro">این بخش هنگام بازشدن برنامه، آثار علمی تازه را از فهرست عمومی Crossref جست‌وجو می‌کند. برای خواندن متن کامل، به صفحه ناشر یا شناسه DOI برو.</p>
+  <div id="researchStatus" class="status-line" aria-live="polite"></div><div id="researchGrid" class="research-grid"></div>
+ </section>
+ <section class="section-block" id="practice">
+  <div class="section-head"><div><span class="eyebrow" data-i18n="practiceEyebrow">تمرین‌های کوچک</span><h2 data-i18n="practiceTitle">همین حالا کمی مکث کن</h2></div></div>
+  <div class="practice-grid"><article class="practice-card"><span class="practice-icon">🌬️</span><h3 data-i18n="breathTitle">تنفس آرام</h3><p data-i18n="breathText">۴ شماره دم، ۲ شماره مکث و ۶ شماره بازدم؛ سه دور، بدون فشار.</p><button id="breathBtn" class="primary-btn" data-i18n="startBreath">شروع تمرین</button><div id="breathState" class="breath-state" aria-live="polite"></div></article>
+  <article class="practice-card"><span class="practice-icon">📝</span><h3 data-i18n="journalTitle">سه خط برای خودت</h3><p data-i18n="journalText">امروز چه احساسی دارم؟ به چه چیزی نیاز دارم؟ کوچک‌ترین قدم مهربانانه‌ام چیست؟</p><textarea id="journal" rows="3" data-placeholder-fa="هرچه در ذهنت هست، بی‌قضاوت بنویس…" data-placeholder-en="Write freely, without judging yourself…" placeholder="هرچه در ذهنت هست، بی‌قضاوت بنویس…"></textarea><button id="saveJournal" class="secondary-btn" data-i18n="saveNote">ذخیره یادداشت روی همین دستگاه</button><small id="journalStatus" class="privacy-note" data-i18n="privacy">یادداشت فقط در مرورگر همین دستگاه ذخیره می‌شود.</small></article></div>
+ </section>
+ <section class="section-block" id="saved"><div class="section-head"><div><span class="eyebrow" data-i18n="savedEyebrow">برای برگشتن</span><h2 data-i18n="savedTitle">جمله‌های ذخیره‌شده</h2></div></div><div id="savedGrid" class="quotes-grid"><p class="empty-state" data-i18n="savedEmpty">هنوز جمله‌ای ذخیره نکرده‌ای.</p></div></section>
+ <section class="section-block sources-section" id="sources"><span class="eyebrow" data-i18n="sourcesEyebrow">فراتر از یک زبان و یک مرز</span><h2 data-i18n="sourcesTitle">منابع و مسیرهای معتبر</h2><p class="section-intro" data-i18n="sourcesIntro">محتوای برنامه از نگاه‌های گوناگون انتخاب شده است؛ منابع علمی، دانشگاهی و فرهنگی کنار هم آمده‌اند، اما جایگاه هرکدام مشخص است.</p>
+ <div class="source-list">
+  <a href="https://www.apa.org/topics" target="_blank" rel="noopener"><b>American Psychological Association</b><small>موضوعات روان‌شناسی و راهنمایی‌های علمی</small></a>
+  <a href="https://www.who.int/health-topics/mental-health" target="_blank" rel="noopener"><b>World Health Organization</b><small>سلامت روان و منابع جهانی</small></a>
+  <a href="https://self-compassion.org/" target="_blank" rel="noopener"><b>Dr. Kristin Neff</b><small>پژوهش و آموزش شفقت به خود</small></a>
+  <a href="https://ppc.sas.upenn.edu/" target="_blank" rel="noopener"><b>University of Pennsylvania · Positive Psychology Center</b><small>روان‌شناسی مثبت‌گرا و پژوهش</small></a>
+  <a href="https://www.greatergood.berkeley.edu/" target="_blank" rel="noopener"><b>Greater Good Science Center · UC Berkeley</b><small>علم مهربانی، همدلی و شادی</small></a>
+  <a href="https://drelahighomshei.com/" target="_blank" rel="noopener"><b>دکتر حسین الهی قمشه‌ای</b><small>وب‌سایت رسمی؛ سخنرانی‌ها و آثار فرهنگی</small></a>
+  <a href="https://t.me/drelahighomshei" target="_blank" rel="noopener"><b>کانال رسمی دکتر الهی قمشه‌ای</b><small>پیوند به محتوای منتشرشده توسط کانال رسمی</small></a>
+  <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener"><b>PubMed</b><small>پژوهش‌های پزشکی و سلامت روان</small></a>
+ </div>
+ <p class="disclaimer" data-i18n="disclaimer">این برنامه برای آموزش عمومی، تأمل و انگیزه طراحی شده است؛ تشخیص، روان‌درمانی یا توصیه پزشکی ارائه نمی‌کند. در صورت رنج شدید یا مداوم، از متخصص سلامت روان کمک بگیر.</p>
+ </section>
 </main>
-<footer>با مهر برای روزهای معمولی و سخت 🤍<small>محتوای آموزشی عمومی؛ نه تشخیص و نه درمان.</small></footer>
+<footer><span>حال خوب</span><small data-i18n="footer">ساخته‌شده برای روزهایی که به کمی مهربانی نیاز داری.</small><small>© <span id="year"></span> · <span data-i18n="footerNote">محتوا با ذکر منبع؛ نقل‌قول مستقیم و برداشت آزاد از هم جدا شده‌اند.</span></small></footer>
 <script src="./app.js"></script>
 </body></html>
