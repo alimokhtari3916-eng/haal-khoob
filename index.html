@@ -10,7 +10,7 @@
 <body>
 <header class="topbar">
  <a class="brand" href="#" aria-label="حال خوب"><img src="./assets/haal-khoob-icon.webp" alt="آیکن اصلی حال خوب"><span><b>حال خوب</b><small data-i18n="tagline">همراه آرام تو برای زندگی روزمره</small></span></a>
- <div class="top-actions"><span class="live-pill"><i></i><span data-i18n="daily">الهام روزانه</span></span><button id="langToggle" class="lang-btn" type="button">EN</button><button id="installBtn" class="install-btn" type="button" hidden data-i18n="install">نصب اپلیکیشن</button></div>
+ <div class="top-actions"><span class="live-pill"><i></i><span data-i18n="daily">الهام روزانه</span></span><button id="langToggle" class="lang-btn" type="button">EN</button><button id="installBtn" class="install-btn" type="button" hidden data-i18n="install">نصب اپلیکیشن</button><button id="themeToggle" class="lang-btn" type="button" aria-label="تغییر ظاهر">🎨 پوسته</button></div>
 </header>
 <main>
  <section class="hero">
@@ -42,6 +42,37 @@
   <article class="practice-card"><span class="practice-icon">📝</span><h3 data-i18n="journalTitle">سه خط برای خودت</h3><p data-i18n="journalText">امروز چه احساسی دارم؟ به چه چیزی نیاز دارم؟ کوچک‌ترین قدم مهربانانه‌ام چیست؟</p><textarea id="journal" rows="3" data-placeholder-fa="هرچه در ذهنت هست، بی‌قضاوت بنویس…" data-placeholder-en="Write freely, without judging yourself…" placeholder="هرچه در ذهنت هست، بی‌قضاوت بنویس…"></textarea><button id="saveJournal" class="secondary-btn" data-i18n="saveNote">ذخیره یادداشت روی همین دستگاه</button><small id="journalStatus" class="privacy-note" data-i18n="privacy">یادداشت فقط در مرورگر همین دستگاه ذخیره می‌شود.</small></article></div>
  </section>
  <section class="section-block" id="saved"><div class="section-head"><div><span class="eyebrow" data-i18n="savedEyebrow">برای برگشتن</span><h2 data-i18n="savedTitle">جمله‌های ذخیره‌شده</h2></div></div><div id="savedGrid" class="quotes-grid"><p class="empty-state" data-i18n="savedEmpty">هنوز جمله‌ای ذخیره نکرده‌ای.</p></div></section>
+ 
+ <section class="section-block" id="mood">
+  <div class="section-head"><div><span class="eyebrow">حال‌سنجی روزانه</span><h2 id="moodTitle">امروز دلت چه حال و هوایی دارد؟</h2></div><span class="count-label" id="moodStreak">شروع یک گفت‌وگوی مهربانانه</span></div>
+  <p class="section-intro" id="moodIntro">هر احساسی که داری قابل شنیدن است؛ این انتخاب فقط برای پیشنهاد محتوای مناسب‌تر است، نه تشخیص روان‌شناختی.</p>
+  <div id="moodChoices" class="mood-choices"></div><div id="moodFeedback" class="tip" aria-live="polite">می‌توانی بدون قضاوت حال امروزت را انتخاب کنی.</div>
+ </section>
+ <section class="section-block" id="journey">
+  <div class="section-head"><div><span class="eyebrow">قدم‌های کوچک، تغییرهای ماندگار</span><h2 id="journeyTitle">مسیر رشد شخصی</h2></div><span class="count-label">۷ و ۲۱ روزه</span></div>
+  <div class="journey-switch"><button class="filter active" data-days="7">مسیر ۷ روزه</button><button class="filter" data-days="21">مسیر ۲۱ روزه</button></div>
+  <div id="journeyProgress" class="progress-track"><span></span></div><p id="journeyPercent" class="privacy-note"></p><div id="journeyDays" class="journey-days"></div>
+ </section>
+ <section class="section-block" id="sounds">
+  <div class="section-head"><div><span class="eyebrow">اتاق صدا و سکوت</span><h2>باران، طبیعت و موسیقی آرام</h2></div><span class="count-label">صدای مولد در مرورگر</span></div>
+  <p class="section-intro">این صداها به‌صورت الگوریتمی در خود مرورگر ساخته می‌شوند؛ فایل موسیقی یا صدای دارای حق نشر در برنامه کپی نشده است. برای شروع، یکی از فضاها را انتخاب کن.</p>
+  <div id="soundScenes" class="sound-grid"></div>
+  <div class="sound-controls"><label for="soundVolume">بلندی صدا</label><input id="soundVolume" type="range" min="0" max="100" value="28"><button id="stopSound" class="secondary-btn">توقف صدا</button><span id="soundStatus" aria-live="polite">هنوز صدایی پخش نمی‌شود.</span></div>
+  <p class="privacy-note">برای صداهای ضبط‌شده و موسیقی‌های دارای مجوز، فهرست منابع بیرونی را ببین: <a href="https://mixkit.co/free-sound-effects/rain/" target="_blank" rel="noopener">صداهای باران Mixkit</a> · <a href="https://pixabay.com/service/license-summary/" target="_blank" rel="noopener">مجوز Pixabay</a>. پیش از میزبانی هر فایل، مجوز همان فایل جداگانه بررسی شود.</p>
+ </section>
+ <section class="section-block" id="books">
+  <div class="section-head"><div><span class="eyebrow">کتابخانه یادگیری</span><h2>خلاصه‌های کوتاه کتاب‌های روان‌شناسی</h2></div></div>
+  <p class="section-intro">خلاصه‌ها بازنویسی مستقل و کوتاه‌اند؛ جایگزین کتاب کامل نیستند و برای آشنایی اولیه نوشته شده‌اند.</p><div id="bookGrid" class="book-grid"></div>
+ </section>
+ <section class="section-block" id="podcasts">
+  <div class="section-head"><div><span class="eyebrow">شنیدن از زبان متخصصان</span><h2>پادکست‌های روان‌شناسی</h2></div></div>
+  <p class="section-intro">قسمت‌های منتخب از منابع رسمی، همراه توضیح کوتاه و لینک شنیدن یا خواندن متن کامل.</p><div id="podcastGrid" class="book-grid"></div>
+ </section>
+ <section class="section-block" id="assistant">
+  <div class="section-head"><div><span class="eyebrow">همراه گفت‌وگو</span><h2>یار حال خوب</h2></div><span class="count-label">نسخه آزمایشی محلی</span></div>
+  <p class="section-intro">می‌توانی درباره احساسات، عادت‌ها و تمرین‌های روزمره سؤال کنی. این نسخه پاسخ‌های راهنمای ازپیش‌تعریف‌شده را روی همین دستگاه نشان می‌دهد؛ هنوز به مدل زبانی آنلاین متصل نیست و تشخیص یا درمان انجام نمی‌دهد.</p>
+  <div class="assistant-panel"><div id="assistantMessages" class="assistant-messages" aria-live="polite"><div class="assistant-bubble">سلام، من یار تعاملی حال خوبم. دوست داری درباره چه چیزی فکر کنیم؟</div></div><form id="assistantForm" class="assistant-form"><input id="assistantInput" type="text" maxlength="500" placeholder="مثلاً این روزها ذهنم خیلی شلوغ است…" autocomplete="off"><button type="submit" class="primary-btn">ارسال</button></form><small class="privacy-note">پیام‌ها فقط در همین صفحه پردازش می‌شوند و ذخیره یا ارسال نمی‌شوند. برای اتصال مدل هوش مصنوعی واقعی باید بک‌اند امن و کلید محرمانه سمت سرور راه‌اندازی شود.</small></div>
+ </section>
  <section class="section-block sources-section" id="sources"><span class="eyebrow" data-i18n="sourcesEyebrow">فراتر از یک زبان و یک مرز</span><h2 data-i18n="sourcesTitle">منابع و مسیرهای معتبر</h2><p class="section-intro" data-i18n="sourcesIntro">محتوای برنامه از نگاه‌های گوناگون انتخاب شده است؛ منابع علمی، دانشگاهی و فرهنگی کنار هم آمده‌اند، اما جایگاه هرکدام مشخص است.</p>
  <div class="source-list">
   <a href="https://www.apa.org/topics" target="_blank" rel="noopener"><b>American Psychological Association</b><small>موضوعات روان‌شناسی و راهنمایی‌های علمی</small></a>
@@ -57,5 +88,5 @@
  </section>
 </main>
 <footer><span>حال خوب</span><small data-i18n="footer">ساخته‌شده برای روزهایی که به کمی مهربانی نیاز داری.</small><small>© <span id="year"></span> · <span data-i18n="footerNote">محتوا با ذکر منبع؛ نقل‌قول مستقیم و برداشت آزاد از هم جدا شده‌اند.</span></small></footer>
-<script src="./app.js"></script>
+<script src="./app.js"></script><script src="./features.js"></script>
 </body></html>
