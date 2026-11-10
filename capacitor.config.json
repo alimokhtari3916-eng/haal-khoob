@@ -1,0 +1,16 @@
+{
+  "appId": "com.alimokhtari3916.haalkhoob",
+  "appName": "حال خوب",
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": false,
+    "captureInput": true
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1400,
+      "backgroundColor": "#F6F3E9",
+      "showSpinner": false
+    }
+  }
+}
